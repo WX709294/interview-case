@@ -78,3 +78,37 @@ new的实现
     return typeof result === 'object' ? result : obj // 5： 返回的值必须为对象
   }
   ```
+
+  <!-- 防抖函数 -->
+  <!-- 防止多次提交按钮， 只执行最后一次提交 -->
+  ```javascript
+      const debounce = (fn, delay) => {
+        let timer = null;
+        return (...args) => {
+          clearTimerOut(timer)
+          timer = setTimeout(() => {
+            fn.apply(this, args)
+          }, delay)
+        }
+      }
+  ```
+
+<!-- 节流函数 -->
+<!-- 
+  拖拽场景： 固定时间内只执行一次， 防止超高频次触发位置变动 
+  缩放场景： 监控浏览器resize
+  动画场景： 避免短时间内多次触发动画引起性能问题
+-->
+```javascript
+  const throttle = (fn, delay = 500) => {
+    let flag = true
+    return (...args) => {
+      if (!flag) return
+      flag = false
+      setTimeOut(() => {
+        fn.apply(this, args)
+        flag = true
+      }, deplay)
+    }
+  }
+```
