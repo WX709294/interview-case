@@ -65,4 +65,75 @@
   //      const { tag, props, children } = vdom
   // }
 
+//  Vue 生命周期
+    // beforeCreate 组建实例创建之前，组建属性生效前  -------data和methods中的数据还未开始初始化
+    // created 组建实例已完全创建，属性也绑定， 但真实dom还未生成，$el还不可用   ----data和methods数据已经初始化好了
+    // beforeMount 在挂载开始之前被调用，相关render函数首次被调用，   ------模板已在内存中编译好了，但是尚未挂载到页面
+    // mounted el被新创建的vm.$el代替， 被挂载到实例上之后调用该钩子  ------将内存编译好的模板，真实替换到浏览器中
+    // beforeUpdate 组建数据更新之前调用，发生在虚拟dom打补丁之前
+    // update 组建数据更新之后
+    // activited 组建被激活时使用 keep-alive专用
+    // deadctivated 组建销毁时使用 keep-alive专用
+    // beforeDestory  组建销毁前
+    // destoryed  组建销毁后
 
+// Vue 组建如何进行通信
+    // props/$emit+v-on
+    // EventBus 进行信息发布与订阅
+    // vuex 全局数据管理库， vuex管理全局数据流
+    // $attr/$listeners
+// computed和watch的区别
+  // computed  
+    // computed 计算属性，更多用于计算值的场景， 适用比较消耗性能的计算场景
+    // computed 具有缓存性， computed值在getter执行后会缓存，只有在他依赖属性改变之后，下一次获取computed的值时才会重新调用对应getter来计算
+  // watch
+    // 更多的是观察作用，类似某些数据的监听回调，用于观察props，$emit或者本组建的值，当数据变化时来执行回调进行后续操作
+    // 无缓存，页面刷新值不会也会执行
+    // ⼩结: 
+    // 1. 当我们要进⾏数值计算,⽽且依赖于其他数据，那么把这个数据设计为computed 
+    // 2. 如果你需要在某个数据变化时做⼀些事情，使⽤watch来观察这个数据变化
+
+//Vue 如何实现双向绑定
+  // 利用object.defineProperty劫持对象的访问器，在属性是发生变换时获取变化，然后根据变换进行后续响应，在vue3.0中适用Proxy代理对象进行类似操作
+    //  const data = {name: ''}  //要被劫持的对象
+    //  function sayHi(name) {
+    //     if (name == 'xxx') {
+    //        console.log('hh')
+    //      } else {
+    //        console.log('戏我演过很多,可游戏我只玩贪玩懒⽉')
+    //      }
+    //  }
+    //   // 遍历对象,对其属性值进⾏劫持
+    // Object.keys(data).forEach((key) => {
+    //   Object.defineProperties(data, key, {
+    //     enumerable: true,
+    //     configurable: true,
+    //     get: function() {
+    //       console.log('get')
+    //     },
+    //     set: function(newValue) {
+    //       // 当属性值发⽣变化时我们可以进⾏额外操作 
+    //       console.log(` ⼤ 家 好 , 我 系 ${newVal}`); 
+    //       sayHi(newVal);
+    //     }
+    //   })
+    // })
+    // data.name = '渣渣辉'; //⼤家好,我系渣渣辉 //戏我演过很多,可游戏我只玩贪玩懒⽉
+
+// Proxy和Object.defineProperty对比
+    // Proxy优势
+        //  Proxy可直接监听对象而非属性
+        //  Proxy可直接监听数组变换
+        //  Proxy返回的是一个新对象，我们可只操作新对象而达到目的，而object.defineProperty只能遍历对象属性直接修改
+        // Proxy有多达13种拦截⽅法,不限于apply、ownKeys、deleteProperty、has等等是 Object.defineProperty 不具备的
+    // Object.defineProperty优势
+        // 兼容性好，支持IE9
+
+// Vue中的key到底有什么⽤？
+    // key是vue中vnode的唯一id，通过这个key，我们的diff操作更准确、更快速，diff算法过程中会进行新旧节点首位交叉对比，当无法匹配的时候会用新节点的key与旧节点对比，然后超出差异
+    // 准确: 如果不加 key ,那么vue会选择复⽤节点(Vue的就地更新策略),导致之前节点的状态被保留下来,会产⽣⼀系列 的bug.
+    // 快速: key的唯⼀性可以被Map数据结构充分利⽤,相⽐于遍历查找的时间复杂度O(n),Map的时间复杂度仅仅为O(1).
+
+
+    // react是pull方式检测
+    // vue是pull+push检测
