@@ -28,3 +28,6 @@ str.replace(re, ($0,$1) => {
     } 
 })
 console.log(`字符最多的是${char}，出现了${num}次`);
+
+
+// object.entries() 

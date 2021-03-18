@@ -57,4 +57,12 @@
 //网页从输入网址到渲染完成那些过程
     // 
 
+// 虚拟dom渲染
+  // function render(vdom) {
+  //     if (typeof vdom === 'string' || typeof vdom === 'number') {
+  //         return document.createTextNode(vdom)
+  //      }
+  //      const { tag, props, children } = vdom
+  // }
+
 
