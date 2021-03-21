@@ -117,3 +117,23 @@
         }
         return arr
       }
+    
+      // 括号匹配
+      function validParentheses(s) {
+        let stack = []
+        for (let i = 0; i < s.length; i++) {
+          let c = s[i]
+          if (c == '{' || c == '[' || c == '(') { //匹配左括号， 入栈
+            stack.push(c)
+          } else {
+            if (stack.length == 0) return false
+            let top = stack[stack.length - 1]
+            if (top == '(' && c == ')' || top == '[' && c == ']' || top == '{' && c == '}') {
+              stack.pop()
+            } else {
+              return false
+            }
+          }
+        }
+        return stack.length == 0
+      }
