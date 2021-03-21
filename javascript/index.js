@@ -31,3 +31,21 @@ console.log(`字符最多的是${char}，出现了${num}次`);
 
 
 // object.entries() 
+
+
+// 闭包
+    // mdn解释：闭包是函数和声明改函数的语法环境组合
+
+// Es6模块与CommonJS模块有什么区别
+    // CommonJS是对模块的浅拷贝，ES6 Module是对模块的引用， 即es6只存只读， 具体点就是指针指向不可变
+
+// null与undefined的区别是什么
+    // null表示空 ，代表此处不应该有值的存在，一个对象可以是null，代表是个空对象，而null本身也是对象
+    // undefined 表示不存在
+
+   // Array.isArray(value) 判断是否为数组
+
+// this指向不是在编写时确认的，而是在运行时确认的
+
+// 剧本数据类型传递
+
