@@ -35,3 +35,24 @@ function  PromiseAll(promiseArrs) {
     }
  })
 }
+
+function PromiseAll(promiseArrs) {
+  if (!Array.isArray(promiseArrs)) {
+    throw new Error('xxxx')
+  }
+
+  let count = 0;
+  let resultArr = [];
+  return new Promise((resolve, reject) => {
+    for (let val of promiseArrs) {
+      Promise.resolve(val).then(res => {
+        resultArr[count++] = res
+        if (count === promiseArrs.length) {
+          resolve(resultArr)
+        }
+      }).catch(e => {
+        reject(e)
+      })
+    }
+  })
+}

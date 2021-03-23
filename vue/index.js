@@ -1,6 +1,21 @@
 
-// 公共数据可以放到vuex中统一管理，各组件分别获取
+// 什么是Vuex？  state getters mutation auctions modules
+    // 公共数据可以放到vuex中统一管理，各组件分别获取
+    // vuex是专门为Vue.js应用程序开发的状态管理插件，采用集中式存储管理应用的所有组件状态，更改唯一方法是提交mutation
 
+    //vuex解决了什么什么问题
+        // 多个组件依赖同一状态，对多层嵌套组件传参会很繁琐
+        // 来自不同组件行为需要变更同一状态
+        
+    //  vuex的核心概念
+      // state => 基本数据 
+      // getters => 从基本数据派生的数据 
+      // mutations => 修改数据，同步 
+      // actions => 修改数据，异步 
+      // modules => 模块化Vuex
+
+
+    
 // key的主要作用是高效更新虚拟dom
 
 // 虚拟dom
@@ -12,14 +27,6 @@
 
 // vue-router hash history
   // hash带# 通过锚点更新页面url，不会触发页面重新加载    history 正常路径
-
-//  vuex的核心概念
-  // state => 基本数据 
-  // getters => 从基本数据派生的数据 
-  // mutations => 修改数据，同步 
-  // actions => 修改数据，异步 
-  // modules => 模块化Vuex
-
 
   // Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。  nextTick
   // 在下一次DOM更新循环结束之后执行延迟回调  nextTick
