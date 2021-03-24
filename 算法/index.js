@@ -13,7 +13,6 @@ function bubbleSort(arr) {
   return arr
 }
 
-
 //选择排序
 function selectionSort(arr) {
   let len = arr.length

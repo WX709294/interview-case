@@ -8,11 +8,11 @@
         // 来自不同组件行为需要变更同一状态
         
     //  vuex的核心概念
-      // state => 基本数据 
-      // getters => 从基本数据派生的数据 
-      // mutations => 修改数据，同步 
-      // actions => 修改数据，异步 
-      // modules => 模块化Vuex
+    //   state => 基本数据 
+    //   getters => 从基本数据派生的数据 
+    //   mutations => 修改数据，同步 
+    //   actions => 修改数据，异步 
+    //   modules => 模块化Vuex
 
 
     
@@ -92,42 +92,42 @@
     // vuex 全局数据管理库， vuex管理全局数据流
     // $attr/$listeners
 // computed和watch的区别
-  // computed  
-    // computed 计算属性，更多用于计算值的场景， 适用比较消耗性能的计算场景
-    // computed 具有缓存性， computed值在getter执行后会缓存，只有在他依赖属性改变之后，下一次获取computed的值时才会重新调用对应getter来计算
-  // watch
-    // 更多的是观察作用，类似某些数据的监听回调，用于观察props，$emit或者本组建的值，当数据变化时来执行回调进行后续操作
-    // 无缓存，页面刷新值不会也会执行
-    // ⼩结: 
-    // 1. 当我们要进⾏数值计算,⽽且依赖于其他数据，那么把这个数据设计为computed 
-    // 2. 如果你需要在某个数据变化时做⼀些事情，使⽤watch来观察这个数据变化
+//   computed  
+//     computed 计算属性，更多用于计算值的场景， 适用比较消耗性能的计算场景
+//     computed 具有缓存性， computed值在getter执行后会缓存，只有在他依赖属性改变之后，下一次获取computed的值时才会重新调用对应getter来计算
+//   watch
+//     更多的是观察作用，类似某些数据的监听回调，用于观察props，$emit或者本组建的值，当数据变化时来执行回调进行后续操作
+//     无缓存，页面刷新值不会也会执行
+//     ⼩结: 
+//     1. 当我们要进⾏数值计算,⽽且依赖于其他数据，那么把这个数据设计为computed 
+//     2. 如果你需要在某个数据变化时做⼀些事情，使⽤watch来观察这个数据变化
 
 //Vue 如何实现双向绑定
-  // 利用object.defineProperty劫持对象的访问器，在属性是发生变换时获取变化，然后根据变换进行后续响应，在vue3.0中适用Proxy代理对象进行类似操作
-    //  const data = {name: ''}  //要被劫持的对象
-    //  function sayHi(name) {
-    //     if (name == 'xxx') {
-    //        console.log('hh')
-    //      } else {
-    //        console.log('戏我演过很多,可游戏我只玩贪玩懒⽉')
-    //      }
-    //  }
-    //   // 遍历对象,对其属性值进⾏劫持
-    // Object.keys(data).forEach((key) => {
-    //   Object.defineProperties(data, key, {
-    //     enumerable: true,
-    //     configurable: true,
-    //     get: function() {
-    //       console.log('get')
-    //     },
-    //     set: function(newValue) {
-    //       // 当属性值发⽣变化时我们可以进⾏额外操作 
-    //       console.log(` ⼤ 家 好 , 我 系 ${newVal}`); 
-    //       sayHi(newVal);
-    //     }
-    //   })
-    // })
-    // data.name = '渣渣辉'; //⼤家好,我系渣渣辉 //戏我演过很多,可游戏我只玩贪玩懒⽉
+//   利用object.defineProperty劫持对象的访问器，在属性是发生变换时获取变化，然后根据变换进行后续响应，在vue3.0中适用Proxy代理对象进行类似操作
+//      const data = {name: ''}  //要被劫持的对象
+//      function sayHi(name) {
+//         if (name == 'xxx') {
+//            console.log('hh')
+//          } else {
+//            console.log('戏我演过很多,可游戏我只玩贪玩懒⽉')
+//          }
+//      }
+//       // 遍历对象,对其属性值进⾏劫持
+//     Object.keys(data).forEach((key) => {
+//       Object.defineProperties(data, key, {
+//         enumerable: true,
+//         configurable: true,
+//         get: function() {
+//           console.log('get')
+//         },
+//         set: function(newValue) {
+//           // 当属性值发⽣变化时我们可以进⾏额外操作 
+//           console.log(` ⼤ 家 好 , 我 系 ${newVal}`); 
+//           sayHi(newVal);
+//         }
+//       })
+//     })
+//     data.name = '渣渣辉'; //⼤家好,我系渣渣辉 //戏我演过很多,可游戏我只玩贪玩懒⽉
 
 // Proxy和Object.defineProperty对比
     // Proxy优势
