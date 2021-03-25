@@ -112,3 +112,27 @@ new的实现
     }
   }
 ```
+### 发布订阅模式
+```javascript
+class  Watcher {
+    constructor(vm, expr, cb) {
+        Dep.target  =  this; // 每次创建Watcher对象的时候，将创建的Watcher对象在获取值的时候添加到dep中
+        this.vm  = vm;
+        this.expr = expr;
+        this.cb = cb;
+        // 默认先存放旧值
+        this.oldValue = this.get();
+        Dep.target = null; // 添加Watcher对象后清空，防止每次获取数据的时候都添加Watcher对象
+    }
+    get() {
+        let value =  CompileUtil.getVal(this.vm, this.expr);
+        return value;
+    }
+    update() {
+        let newValue =  CompileUtil.getVal(this.vm, this.expr);
+        if (newValue !==  this.oldValue) {
+            this.cb(newValue);
+        }
+    }
+}
+```

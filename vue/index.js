@@ -103,6 +103,12 @@
 //     2. 如果你需要在某个数据变化时做⼀些事情，使⽤watch来观察这个数据变化
 
 //Vue 如何实现双向绑定
+    //     所谓发布订阅模式就是，定义了对象间的一种一对多的关系，
+    // 让多个观察者对象同时监听某一个主题对象，当一个对象发生改变时，
+    // 所有依赖于它的对象都将得到通知。
+    //     所谓数据劫持，就是利用JavaScript的访问器属性，即Object.defineProperty()方法，
+    // 当对对象的属性进行赋值时，Object.defineProperty就可以通过set方法劫持到数据的变化，
+    // 然后通知发布者(主题对象)去通知所有观察者，观察者收到通知后，就会对视图进行更新。
 //   利用object.defineProperty劫持对象的访问器，在属性是发生变换时获取变化，然后根据变换进行后续响应，在vue3.0中适用Proxy代理对象进行类似操作
 //      const data = {name: ''}  //要被劫持的对象
 //      function sayHi(name) {
@@ -162,3 +168,21 @@
     // 图片懒加载 用字体图标代替小图片
     // 页面添加骨架屏，进行占位
     // 前端做一些接口缓存，
+
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr
+    }
+    let index = Math.floor(arr.length / 2)
+    let mid = arr.splice(index, 1)
+    let left = []
+    let right = []
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] <mid) {
+            left.push(arr[i])
+        } else {
+            right.push(arr[i])
+        }
+    }
+    return quickSort(left).concat(arr[index]).concat(quickSort(right))
+}
