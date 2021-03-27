@@ -169,20 +169,67 @@
     // 页面添加骨架屏，进行占位
     // 前端做一些接口缓存，
 
-function quickSort(arr) {
-    if (arr.length <= 1) {
-        return arr
+// // vue虚拟dom理解
+    // dom渲染（真实dom构造）
+        // 构建dom树（html分析器），生成样式表（css分析器），构建render树，确定节点坐标，绘制页面
+    // 虚拟dom
+        // 虚拟dom主要是为了解决浏览器性能而设计
+        
+    Element.prototype.render = function() {
+        var el = document.createElement(this.targetName);
+        var props = this.props
+        // 设置节点dom属性
+        for (var propName of props) {
+            var propValue = props[propName]
+            el.setAttribute(propName, propValue)
+        }
+
+        var children = this.children || []
+        children.forEach((child) => {
+            var childEl = (child instanceof Element) ? child.render() : document.createTextNode(child)
+            el.appendChild(childEl)
+        })
+        return el
     }
-    let index = Math.floor(arr.length / 2)
-    let mid = arr.splice(index, 1)
-    let left = []
-    let right = []
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] <mid) {
-            left.push(arr[i])
-        } else {
-            right.push(arr[i])
+
+//  dom diff 对比
+    function diff(oldTree, newTree) {
+        var index = 0; //当前节点标志
+        var patches = {} //记录每个节点差异对象
+        dfsWalk(oldTree, newTree, index, patches)
+    }
+
+    function dfsWalk(oldNode, newNode, index, patches) {
+        var currentPath = [];
+        if (typeof (oldNode) === 'string' && typeof (newNode) === 'string') {
+            //文本内容改变
+            if (newNode !== oldNode) {
+                currentPath.push({
+                    type: patch.text,
+                    content: newNode
+                })
+            }
+        } else if (newNode != null && oldNode.tageName === newNode.targetName && oldNode.key === newNode.key) {
+            //节点相同，比较属性
+            var propsPatches = diffProps(oldNode, newNode)
+            if (propsPatches) {
+                currentPath.push({
+                    type: patch.PROPS,
+                    props: propsPatches
+                })
+            }
+            // 比较子节点,如果子节点有ignore属性，则不需要比较
+            if (!isIgnoreChildren(newValue)) {
+                diffChildren(
+                    oldNode.children,
+                    newNode.children,
+                    index,
+                    patches,
+                    currentPath
+                )
+            }
+        } else if (newNode !== null) {
+            // 新节点和旧节点不同， 使用replace
+            patches[index] = currentPath
         }
     }
-    return quickSort(left).concat(arr[index]).concat(quickSort(right))
-}

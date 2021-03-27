@@ -9,6 +9,9 @@
 
     // 数据变换更新视图，视图变换更新数据
 
+    // 当创建vue实例的时候，vue会遍历data选项的属性， 利用Object.defineProperty为属性添加getter和setter,对数据的读取进行劫持（getter用来收集依赖， setter用来派发更新），
+    // 并且在内部追踪依赖，在属性被访问和修改是通知变化
+
 // mixins使用
 
 // vue-router  name跳转和path跳转区别
