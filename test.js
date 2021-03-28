@@ -55,3 +55,8 @@ function promiseAll(arr) {
     }
   })
 }
+
+es6模块  AMD(require.js,提前执行)  CMD(seajs，延迟执行)
+实现模块主要使用的是export和import（基于AMD和CMD实现的规范模块化库）
+每个模块都有自己的上下文，每一个模块内声明的变量都是局部变量，不会污染全局作用域
+import 是只读属性（可修改类型为对象的属性，不能修改基本类型的值）

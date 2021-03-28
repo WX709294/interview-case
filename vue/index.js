@@ -169,20 +169,5 @@
     // 页面添加骨架屏，进行占位
     // 前端做一些接口缓存，
 
-function quickSort(arr) {
-    if (arr.length <= 1) {
-        return arr
-    }
-    let index = Math.floor(arr.length / 2)
-    let mid = arr.splice(index, 1)
-    let left = []
-    let right = []
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] <mid) {
-            left.push(arr[i])
-        } else {
-            right.push(arr[i])
-        }
-    }
-    return quickSort(left).concat(arr[index]).concat(quickSort(right))
-}
+// 路由导航守卫和Vue实例生命周期钩子函数的执行顺序？
+    // 路由导航守卫都是在Vue实例生命周期钩子函数之前执行的。
