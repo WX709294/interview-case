@@ -49,3 +49,8 @@ console.log(`字符最多的是${char}，出现了${num}次`);
 
 // 剧本数据类型传递
 
+// localStorage
+    // localStorage 生命周期永久，关闭页面或浏览器也不会丢失，除非主动删除
+    // sessionStroage 只在当前会话下有效
+    // localStorage和sessionStorage都保存在客户端，不与服务器进行通信
+

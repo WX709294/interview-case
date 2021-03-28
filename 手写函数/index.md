@@ -153,3 +153,33 @@ class  Watcher {
         return el
       }
     ```
+
+    ```javascript
+      class EventEmiter{
+        constructor() {
+          this.events = {}
+        }
+        on(eventName, cb) {
+          if (!this.events[eventName]) {
+            this.events[eventName] = [cb]
+          } else {
+            this.events[eventName].push(cb)
+          }
+        },
+        emit(eventName) {
+          this.events[eventName] && this.events[eventName].forEach(cb => cb())
+        },
+        removeListener(eventName, cb) {
+          if (this.events[eventName]) {
+            this.events[eventName] = this.events[eventName].filter(callback => callback != cb)
+          }
+        },
+        once(eventName, cb) {
+          let fn = () => {
+            callback();
+            this.removeListener(eventName, fn)
+          }
+          this.on(eventName, fn)
+        }
+      }
+    ```
