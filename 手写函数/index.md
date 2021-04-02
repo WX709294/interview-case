@@ -136,3 +136,50 @@ class  Watcher {
     }
 }
 ```
+### 渲染js表示的dom对象 
+    ```javascript
+      Element.prototype.render = function() {
+        var el = document.createElement(this.tagName)
+        var props = this.props;
+        for(var propName in props) {
+          var propValue = props[propName]
+          el.setAttribute(propName, propValue)
+        }
+        var children = this.children || [];
+        children.forEach((child) => {
+          var childEl = (child instanceof Element) ? child.render() : document.createTextNode(child)
+          el.appendChild(childEl)
+        })
+        return el
+      }
+    ```
+
+    ```javascript
+      class EventEmiter{
+        constructor() {
+          this.events = {}
+        }
+        on(eventName, cb) {
+          if (!this.events[eventName]) {
+            this.events[eventName] = [cb]
+          } else {
+            this.events[eventName].push(cb)
+          }
+        },
+        emit(eventName) {
+          this.events[eventName] && this.events[eventName].forEach(cb => cb())
+        },
+        removeListener(eventName, cb) {
+          if (this.events[eventName]) {
+            this.events[eventName] = this.events[eventName].filter(callback => callback != cb)
+          }
+        },
+        once(eventName, cb) {
+          let fn = () => {
+            callback();
+            this.removeListener(eventName, fn)
+          }
+          this.on(eventName, fn)
+        }
+      }
+    ```
