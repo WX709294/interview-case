@@ -235,3 +235,23 @@
             patches[index] = currentPath
         }
     }
+
+    //模块化
+// 拆分为按需导入的单独模块
+
+// 在es6之前使用的是requirejs和seajs实现模块化 
+// requireJs是基于AMD规范的模块化库，seaJs是基于CMD规范的模块化库
+// 一个js文件代表一个js模块
+
+//es6 模块化的基本规则、特点
+// 1:每一个模块只加载一次，每一个js只执行一次，如果下次再去加载同目录下同文件，直接从内存中读取。一个模块就是一个单例，或者说就是一个对象
+// 2:每一个模块内声明的变量都是局部变量（所有代码都运行在模块作用域），不会污染全局作用域
+// 3: 模块内部的变量或者函数可以通过export导出
+// 4: 一个模块可以导入别的模块
+
+// commonjs 与es6的module区别
+  // 1: 两者模块导入语言不同，commonjs是module.exports,exports导出，require导入；es6则export导出，import导入
+  // 2: commonjs是运行时加载模块，es6是在静态编译期间就确定模块的依赖
+  // 3: es6在编译期间会将所有import提升至顶部，commonjs不会提升require
+  // 4: commonjs导出的是一个值拷贝，会对加载结果进行缓存，一旦内部再修改这个值，则不会同步到外部。es6导出的是一个引用，内部修改可同步到外部
+  // 5: commonjs中顶层this指向这个模块本身；es6中顶层this指向undefined
