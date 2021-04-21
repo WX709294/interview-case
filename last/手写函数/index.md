@@ -80,7 +80,7 @@ new的实现
   ```
 
   <!-- 防抖函数 -->
-  <!-- 防止多次提交按钮， 只执行最后一次提交 , 搜索联想-->
+  <!-- 一个需要频繁触发的函数，在规定时间内，只让最后一次生效，前面的不生效。-->
   ```javascript
       const debounce = (fn, delay) => {
         let timer = null;
@@ -94,10 +94,14 @@ new的实现
   ```
 
 <!-- 节流函数 -->
+<!-- 一个函数执行一次之后，只有大于设定的执行周期后才会执行第二次 -->
 <!-- 
-  拖拽场景： 固定时间内只执行一次， 防止超高频次触发位置变动 
-  缩放场景： 监控浏览器resize
-  动画场景： 避免短时间内多次触发动画引起性能问题
+  DOM 元素的拖拽功能实现（mousemove）
+  搜索联想（keyup）
+  计算鼠标移动的距离（mousemove）
+  Canvas 模拟画板功能（mousemove）
+  射击游戏的 mousedown/keydown 事件（单位时间只能发射一颗子弹）
+  监听滚动事件判断是否到页面底部自动加载更多：给 scroll 加了 debounce 后，只有用户停止滚动后，才会判断是否到了页面底部；如果是 throttle 的话，只要页面滚动就会间隔一段时间判断一次
 -->
 ```javascript
   const throttle = (fn, delay = 500) => {
@@ -111,6 +115,21 @@ new的实现
       }, deplay)
     }
   }
+
+  function throttle(fn, delay) {
+  // 记录上一次函数触发的时间
+  var lastTime = 0;
+  return function() {
+      // 记录当前函数触发的时间
+      var nowTime = Date.now();
+      if (nowTime - lastTime > delay) {
+      // 修正this指向问题
+          fn.call(this);
+      // 同步时间
+        lastTime = nowTime;
+      }
+  }
+}
 ```
 ### 发布订阅模式
 ```javascript
