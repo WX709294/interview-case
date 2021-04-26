@@ -51,5 +51,18 @@
 // 发布订阅
 
 
+// vue diff 算法
+// vue 双向绑定原理
+
 // 什么是闭包
     // 闭包就是可以在一个内层函数里访问其外层函数的作用域，每当创建一个函数，闭包就会在函数创建的同时被创建出来
+
+// 原型与原型链 
+    // （https://segmentfault.com/a/1190000021232132）
+    // __proto__通常称为隐式原型，prototype通常称为显式原型，那我们可以说一个对象的隐式原型指向了该对象的构造函数的显式原型
+        // p1.__proto__ === Parent.prototype; // true
+    // 我们之前也说过__proto__属性是对象（包括函数）独有的，那么Parent.prototype也是对象，那它有隐式原型么？又指向谁？
+        // Parent.prototype.__proto__ === Object.prototype; //true  
+        // 由此我们可以验证一个结论，万物继承自Object.prototype
+    // 当然如果找到Object.prototype上也没找到，就在Object.prototype.__proto__中寻找，但是Object.prototype.__proto__ === null所以就返回undefined。这就是为什么当访问对象中一个不存在的属性时，返回undefined了。
+    
